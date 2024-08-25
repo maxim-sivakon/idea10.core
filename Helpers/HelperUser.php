@@ -1,6 +1,6 @@
 <?php
 
-namespace Tknovosib\Helpers;
+namespace Idea10\Core\Helpers;
 
 class HelperUser
 {

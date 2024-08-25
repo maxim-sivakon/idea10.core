@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Helpers;
+namespace Idea10\Core\Helpers;
 
 use \Bitrix\Main\SystemException;
 use \Bitrix\Main\Web\HttpClient;

@@ -1,5 +1,5 @@
 <?php
 
-namespace Core\Helpers;
+namespace Idea10\Core\Helpers;
 
 class HelperSale { }

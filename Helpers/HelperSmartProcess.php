@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Helpers;
+namespace Idea10\Core\Helpers;
 
 use \Bitrix\Main\Type\DateTime;
 use \Bitrix\Crm\Service\Container;
