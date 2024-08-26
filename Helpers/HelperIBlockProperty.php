@@ -146,29 +146,15 @@ class HelperIBlockProperty
     }
 
     /**
-     * @param  int  $IBLOCK_ID
-     * @param  string  $name
+     * @param  array  $aFields
      * @return mixed
      */
-    public static function addProp(int $IBLOCK_ID, string $name)
+    public static function addProp(array $aFields)
     {
-
-        // массив полей для нового свойства
-        $arFieldsProp = [
-            "NAME"          => $name,
-            "ACTIVE"        => "Y",
-            "SORT"          => "100",
-            "MULTIPLE"      => "Y",
-            "CODE"          => "PROP",
-            "PROPERTY_TYPE" => "S",
-            "USER_TYPE"     => "UserID",
-            "IBLOCK_ID"     => $IBLOCK_ID
-        ];
-
         $ibp = new CIBlockProperty;
 
         // создаём свойство
-        $propID = $ibp->Add($arFieldsProp);
+        $propID = $ibp->Add($aFields);
 
         return $propID;
     }
