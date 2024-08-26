@@ -15,7 +15,7 @@ class HelperHL
     public function __construct()
     {
         if (!Loader::IncludeModule("highloadblock")) {
-            throw new Cosmos_Exception("Не найден модуль хайлоадблоков");
+            throw new Exception("Не найден модуль хайлоадблоков");
         }
         $this->_getAllHLblockId();
     }

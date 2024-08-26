@@ -9,12 +9,12 @@ class HelperSmartProcess
 {
     /**
      * @param  int  $id  - ID элемента
-     * @param  int  $idSmartProcess  - ID смарт-процесса
+     * @param  int  $id_smart_process  - ID смарт-процесса
      * @return array
      */
-    protected static function executeSmartProcess(int $id, int $idSmartProcess)
+    protected static function executeSmartProcess(int $id, int $id_smart_process)
     {
-        $factory = Container::getInstance()->getFactory($idSmartProcess);
+        $factory = \Container::getInstance()->getFactory($id_smart_process);
         $item = $factory->getItem($id);
 
         return $item->getData();
@@ -22,11 +22,11 @@ class HelperSmartProcess
 
     /**
      * @param  int  $id  - ID элемента
-     * @param  int  $idSmartProcess  - ID смарт-процесса
+     * @param  int  $id_smart_process  - ID смарт-процесса
      * @return array
      */
-    public static function getSmartProcess($id, $idSmartProcess): ?array
+    public static function getSmartProcess($id, $id_smart_process): ?array
     {
-        return self::executeSmartProcess($id, $idSmartProcess);
+        return self::executeSmartProcess($id, $id_smart_process);
     }
 }

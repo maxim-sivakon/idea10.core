@@ -7,12 +7,12 @@ use \Bitrix\Crm\Timeline\CommentEntry;
 class HelperDeal
 {
     /**
-     * @param  int  $DEAL_ID
-     * @param  string  $CHECK_PERMISSIONS
-     * @param  array  $GET_FIELDS
+     * @param  int  $deal_id
+     * @param  string  $check_permissions
+     * @param  array  $get_fields
      * @return array
      */
-    protected static function executeDeal(int $DEAL_ID, string $CHECK_PERMISSIONS = "Y", array $GET_FIELDS)
+    protected static function executeDeal(int $deal_id, string $check_permissions = "Y", array $get_fields)
     {
         \Bitrix\Main\Loader::includeModule('crm');
         $result = [];
@@ -20,12 +20,12 @@ class HelperDeal
         $entityResult = \CCrmDeal::GetListEx(
             ['SOURCE_ID' => 'DESC'],
             [
-                'ID'                => $DEAL_ID,
-                'CHECK_PERMISSIONS' => $CHECK_PERMISSIONS
+                'ID'                => $deal_id,
+                'CHECK_PERMISSIONS' => $check_permissions
             ],
             false,
             false,
-            $GET_FIELDS
+            $get_fields
         );
 
         while ($entity = $entityResult->fetch()) {
@@ -121,13 +121,13 @@ class HelperDeal
     }
 
     /**
-     * @param $DEAL_ID
-     * @param $CHECK_PERMISSIONS
-     * @param $GET_FIELDS
+     * @param  int  $deal_id
+     * @param  string  $check_permissions
+     * @param  array  $get_fields
      * @return array|null
      */
-    public static function getDeal($DEAL_ID, $CHECK_PERMISSIONS, $GET_FIELDS): ?array
+    public static function getDeal($deal_id, $check_permissions, $get_fields): ?array
     {
-        return self::executeDeal($DEAL_ID, $CHECK_PERMISSIONS, $GET_FIELDS);
+        return self::executeDeal($deal_id, $check_permissions, $get_fields);
     }
 }

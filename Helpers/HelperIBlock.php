@@ -72,13 +72,14 @@ class HelperIBlock
         return $this->_getList([], $aFilter);
     }
 
-    public function AddIblockType(array $name)
+    /**
+     * @param  array  $name - код для типа инфоблоков
+     * @param $iblockTypeCode
+     * @return array|false|void
+     */
+    public function AddIblockType(array $name, $iblockTypeCode)
     {
-
         global $DB;
-
-        // код для типа инфоблоков
-        $iblockTypeCode = 'custom_iblock_type';
 
         // проверяем на уникальность
         $db_iblock_type = \CIBlockType::GetList(

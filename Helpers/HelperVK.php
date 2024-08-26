@@ -186,7 +186,7 @@ class HelperVK
 
         return $aAlbumUrls;
 
-        sleep(1); /*Ожидание, чтобы не превысить лимиты*/
+        sleep(1); /*Ожидание, не превысить лимиты*/
     }
 
     function __destruct()

@@ -6,24 +6,24 @@ class HelperUser
 {
 
     /**
-     * @param $USER_ID  - ID пользователя
+     * @param $user_id  - ID пользователя
      * @return array|null
      */
-    protected static function executeUser($USER_ID): ?array
+    protected static function executeUser($user_id): ?array
     {
-        $arUser = \CUser::GetByID($USER_ID)->Fetch();
+        $arUser = \CUser::GetByID($user_id)->Fetch();
         $arUser[ "FIRST_LAST_NAME" ] = $arUser[ "NAME" ].' '.$arUser[ "LAST_NAME" ];
 
         return $arUser;
     }
 
     /**
-     * @param $USER_ID  - ID пользователя
+     * @param $user_id  - ID пользователя
      * @return array|null
      */
-    public static function getUser($USER_ID): ?array
+    public static function getUser($user_id): ?array
     {
-        return self::executeUser($USER_ID);
+        return self::executeUser($user_id);
     }
 
     /**
