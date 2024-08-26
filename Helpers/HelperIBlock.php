@@ -129,7 +129,7 @@ class HelperIBlock
      * @param  array  $name
      * @return false
      */
-    public function AddIblock(string $iblockCode, string $iblockType, array $name)
+    public function AddIblock(string $iblockCode, string $iblockType, array $fields)
     {
 
         $ib = new \CIBlock;
@@ -147,7 +147,7 @@ class HelperIBlock
         } else {
             $arFieldsIB = [
                 "ACTIVE"         => "Y",
-                "NAME"           => $name,
+                "NAME"           => $fields['NAME'],
                 "CODE"           => $iblockCode,
                 "IBLOCK_TYPE_ID" => $iblockType,
                 "SITE_ID"        => SITE_ID,
