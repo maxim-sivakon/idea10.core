@@ -6,6 +6,12 @@ use \Bitrix\Main\Loader;
 
 class HelperIBlockProperty
 {
+    public function __construct()
+    {
+        if (!Loader::includeModule("iblock")) {
+            throw new Exception("Не найден модуль инфоблоков");
+        }
+    }
     /**
      * Метод получает варианты значений свойства инфоблока типа список по его символьному коду
      *
