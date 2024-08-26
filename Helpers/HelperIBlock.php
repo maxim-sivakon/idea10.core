@@ -73,42 +73,25 @@ class HelperIBlock
     }
 
     /**
-     * @param  array  $name - код для типа инфоблоков
-     * @param $iblockTypeCode
+     * @param  array  $aFields
      * @return array|false|void
      */
-    public function AddIblockType(array $name, $iblockTypeCode)
+    public function AddIblockType(array $aFields)
     {
         global $DB;
 
         // проверяем на уникальность
         $db_iblock_type = \CIBlockType::GetList(
             ["SORT" => "ASC"],
-            ["ID" => $iblockTypeCode]
+            ["ID" => $aFields['ID']]
         );
         // если его нет - создаём
         if (!$ar_iblock_type = $db_iblock_type->Fetch()) {
             $obBlocktype = new \CIBlockType;
             $DB->StartTransaction();
 
-            // массив полей для нового типа инфоблоков
-            $arIBType = [
-                'ID'       => $iblockTypeCode,
-                'SECTIONS' => 'Y',
-                'IN_RSS'   => 'N',
-                'SORT'     => 500,
-                'LANG'     => [
-                    'en' => [
-                        'NAME' => $name[ 'en' ][ 'NAME' ],
-                    ],
-                    'ru' => [
-                        'NAME' => $name[ 'ru' ][ 'NAME' ],
-                    ]
-                ]
-            ];
-
             // создаём новый тип для инфоблоков
-            $resIBT = $obBlocktype->Add($arIBType);
+            $resIBT = $obBlocktype->Add($aFields);
             if (!$resIBT) {
                 $DB->Rollback();
                 echo 'Error: '.$obBlocktype->LAST_ERROR;
@@ -120,52 +103,29 @@ class HelperIBlock
             return false;
         }
 
-        return $arIBType;
+        return $aFields;
     }
 
     /**
-     * @param  string  $iblockCode  - символьный код для инфоблока
-     * @param  string  $iblockType  - код типа инфоблоков
-     * @param  array  $name
+     * @param  array  $aFields
      * @return false
      */
-    public function AddIblock(string $iblockCode, string $iblockType, array $fields)
+    public function AddIblock(array $aFields)
     {
-
         $ib = new \CIBlock;
 
         // проверка на уникальность
         $resIBE = \CIBlock::GetList(
             [],
             [
-                'TYPE' => $iblockType,
-                "CODE" => $iblockCode
+                'TYPE' => $aFields['IBLOCK_TYPE_ID'],
+                "CODE" => $aFields['CODE']
             ]
         );
         if ($ar_resIBE = $resIBE->Fetch()) {
             return false;
         } else {
-            $arFieldsIB = [
-                "ACTIVE"         => "Y",
-                "NAME"           => $fields['NAME'],
-                "CODE"           => $iblockCode,
-                "IBLOCK_TYPE_ID" => $iblockType,
-                "SITE_ID"        => SITE_ID,
-                "GROUP_ID"       => ["2" => "R"],
-                "FIELDS"         => [
-                    "CODE" => [
-                        "IS_REQUIRED"   => "Y",
-                        "DEFAULT_VALUE" => [
-                            "TRANS_CASE"      => "L",
-                            "UNIQUE"          => "Y",
-                            "TRANSLITERATION" => "Y",
-                            "TRANS_SPACE"     => "-",
-                            "TRANS_OTHER"     => "-"
-                        ]
-                    ]
-                ]
-            ];
-            return $ib->Add($arFieldsIB);
+            return $ib->Add($aFields);
         }
     }
 }
